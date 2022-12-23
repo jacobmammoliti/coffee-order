@@ -1,0 +1,15 @@
+{
+  "name": "coffee_order",
+  "version": "0.1",
+  "description": "A dummy Node.js application that allows you to send coffee orders that get stored in a Redis cache.",
+  "author": "Jacob Mammoliti",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2",
+    "redis": "^4.5.1"
+  }
+}
