@@ -1,0 +1,7 @@
+---
+applications:
+- name: coffee-order
+  memory: 128M
+  random-route: true
+  env:
+    REDIS_PASSWORD: "testing123"
