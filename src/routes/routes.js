@@ -23,8 +23,21 @@ app.get('/healthz', function(req, res) {
 // stored in Redis.
 app.get('/', async function(req, res) {
     console.log(req.method, req.path, req.ip);
-    var orders = await redisClient.getOrders();
-    res.render('index.pug', {'orders': orders});
+    var timeout = setTimeout(() => {
+        res.render('index.pug', {'cant_connect_to_redis': 'yes', 'orders': {},});
+    }, 1000);
+    
+    var orders = await redisClient.getOrders()
+    .then((data) => {
+        clearTimeout(timeout);
+        res.render('index.pug', {'cant_connect_to_redis': 'no', 'orders': data});
+    }).catch((err) => {
+        clearTimeout(timeout);
+        res.json({
+            message: 'Error connecting to Redis',
+            error: err
+        });
+    });
 });
 
 // Order endpoint

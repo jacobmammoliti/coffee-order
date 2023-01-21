@@ -13,7 +13,6 @@ const client = redis.createClient({
 
 // Handler for "error" events
 client.on('error', function(err) {
-    console.error(err);
 });
 
 // Function that connects to the Redis instance
